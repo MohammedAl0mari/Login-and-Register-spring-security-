@@ -1,4 +1,6 @@
 package com.LoginAndRegister.SecurityConfig;
+import com.LoginAndRegister.Service.UserPrincipalDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -12,6 +14,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+    private UserPrincipalDetailsService userPrincipalDetailsService;
+    @Autowired
+    public SecurityConfiguration(UserPrincipalDetailsService userPrincipalDetailsService) {
+        this.userPrincipalDetailsService = userPrincipalDetailsService;
+    }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.authenticationProvider(authenticationProvider());
@@ -32,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     DaoAuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-        daoAuthenticationProvider.setUserDetailsService(userDetailsService());
+        daoAuthenticationProvider.setUserDetailsService(userPrincipalDetailsService);
         return daoAuthenticationProvider;
     }
     @Bean
