@@ -20,11 +20,15 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "eole_name")
+    @Column(name = "role_name")
     private String roleName;
 
     @ManyToMany(mappedBy = "roles")
     private List<User> users= new ArrayList<>();;
+
+    public Role(String role) {
+        this.roleName=role;
+    }
 
 
 }
