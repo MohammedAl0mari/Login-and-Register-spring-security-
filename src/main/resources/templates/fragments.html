@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<!-- Fragment #1 : Header files contains css and js references -->
+<head th:fragment="headerfiles">
+    <title>Introduction to SpringBoot Security</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+
+<!-- Fragment #2 : Navbar contains nav links -->
+<div th:fragment="nav">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Boot Security</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a  th:href="@{~/api/main}"><i class="fa fa-home"></i>Home</a>
+                </li>
+                <li class="nav-item">
+                    <a  sec:authorize="isAuthenticated()" h th:href="@{~/api/profile}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a  sec:authorize="hasRole('ROLE_ADMIN')"  th:href="@{~/api/admin}">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a  sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MANGER')"  th:href="@{~/api/management}">Management</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
+                <button sec:authorize="isAuthenticated()"  type="submit">Logout</button>
+            </form>
+            <a sec:authorize="isAnonymous()" th:href="@{~/api/login}" >Login</a>
+        </div>
+    </nav>
+</div>
+</body>
+</html>

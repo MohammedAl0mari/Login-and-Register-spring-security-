@@ -26,12 +26,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/api/login").permitAll()
-                .antMatchers("/api/test").authenticated()
+                .antMatchers("/MyWebsite/login").permitAll()
+                .antMatchers("/MyWebsite/main").authenticated()
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/signIN")
-                .loginPage("/api/login")
+                .loginPage("/MyWebsite/login")
                 .usernameParameter("userName")
                 .passwordParameter("passCode");
     }

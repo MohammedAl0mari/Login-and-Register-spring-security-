@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Log in</title>
+<head th:insert="fragments.html :: headerfiles">
+    <title>Register</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -9,22 +9,31 @@
     <div style="width:600px;margin-left: auto;margin-right: auto;margin-top:24px;padding: 24px;">
         <div class="card">
             <div class="card-header">
-                <i class="fa fa-user"></i> Please Login
+                <i class="fa fa-user"></i> Please Enter Your Information
             </div>
             <div class="card-block" style="padding: 24px;">
-                <form th:action="@{/signIN}" method="post">
+                <form th:action="@{/MyWebsite/saveUser}" method="post">
                     <fieldset>
-                        <!-- Login Controls -->
+                        <!-- Register Controls -->
                         <div class="form-group">
                             <label for="txtUsername">Username</label>
                             <input type="text" class="form-control" id="txtUsername" name="userName"
-                                   placeholder="Username">
+                                   placeholder="User Name">
                         </div>
-
+                        <div class="form-group">
+                            <label for="txtUsername">Username</label>
+                            <input type="email" class="form-control" id="txtEmail" name="email"
+                                   placeholder="Email Address">
+                        </div>
                         <div class="form-group">
                             <label for="txtPassword">Password</label>
-                            <input type="password" class="form-control" id="txtPassword" name="passCode"
+                            <input type="password" class="form-control" id="txtPassword" name="password"
                                    placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtPassword">Password</label>
+                            <input type="password" class="form-control" id="txtRepassword" name="repassword"
+                                   placeholder="RePassword">
                         </div>
 
                         <!-- Login Button -->
