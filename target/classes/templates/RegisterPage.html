@@ -12,33 +12,38 @@
                 <i class="fa fa-user"></i> Please Enter Your Information
             </div>
             <div class="card-block" style="padding: 24px;">
-                <form th:action="@{/MyWebsite/saveUser}" method="post">
+                <form  th:action="@{/MyWebsite/Register}" th:object="${newUser}" method="post">
                     <fieldset>
+
                         <!-- Register Controls -->
-                        <div class="form-group">
+                       <div class="form-group">
                             <label for="txtUsername">Username</label>
-                            <input type="text" class="form-control" id="txtUsername" name="userName"
+                            <input th:field="*{userName}" type="text" class="form-control" id="txtUsername"
                                    placeholder="User Name">
+                           <div class="alert alert-warning" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></div>
                         </div>
                         <div class="form-group">
-                            <label for="txtUsername">Username</label>
-                            <input type="email" class="form-control" id="txtEmail" name="email"
+                            <label for="txtEmail">Username</label>
+                            <input th:field="*{email}" type="email" class="form-control" id="txtEmail"
                                    placeholder="Email Address">
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                         </div>
                         <div class="form-group">
                             <label for="txtPassword">Password</label>
-                            <input type="password" class="form-control" id="txtPassword" name="password"
+                            <input th:field="*{password}" type="password" class="form-control" id="txtPassword" name="password"
                                    placeholder="Password">
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                         </div>
                         <div class="form-group">
-                            <label for="txtPassword">Password</label>
-                            <input type="password" class="form-control" id="txtRepassword" name="repassword"
+                            <label for="txtRepassword">Password</label>
+                            <input th:field="*{rePassword}" type="password" class="form-control" id="txtrePassword" name="rePassword"
                                    placeholder="RePassword">
+                            <div class="alert alert-warning" th:if="${#fields.hasErrors('rePassword')}" th:errors="*{rePassword}"></div>
                         </div>
 
                         <!-- Login Button -->
                         <div class="form-actions" style="margin-top: 12px;">
-                            <button type="submit" class="btn btn-success">Log in</button>
+                            <button type="submit" class="btn btn-success">Signup !</button>
                         </div>
                     </fieldset>
                 </form>

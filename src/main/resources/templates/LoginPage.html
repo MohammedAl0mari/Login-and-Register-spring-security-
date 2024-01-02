@@ -14,16 +14,20 @@
             <div class="card-block" style="padding: 24px;">
                 <form th:action="@{/signIN}" method="post">
                     <fieldset>
+                        <div th:if="${param.error}" >
+                            Invalid
+
+                        </div>
                         <!-- Login Controls -->
                         <div class="form-group">
                             <label for="txtUsername">Username</label>
-                            <input type="text" class="form-control" id="txtUsername" name="userName"
+                            <input type="text" class="form-control" id="txtUsername" name="email"
                                    placeholder="Username">
                         </div>
 
                         <div class="form-group">
                             <label for="txtPassword">Password</label>
-                            <input type="password" class="form-control" id="txtPassword" name="passCode"
+                            <input type="password" class="form-control" id="txtPassword" name="password"
                                    placeholder="Password">
                         </div>
 

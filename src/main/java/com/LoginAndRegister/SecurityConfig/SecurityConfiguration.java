@@ -32,8 +32,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginProcessingUrl("/signIN")
                 .loginPage("/MyWebsite/login")
-                .usernameParameter("userName")
-                .passwordParameter("passCode");
+                .usernameParameter("email")
+                .passwordParameter("password");
     }
     @Bean
     DaoAuthenticationProvider authenticationProvider(){

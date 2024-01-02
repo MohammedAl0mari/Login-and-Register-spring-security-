@@ -15,4 +15,7 @@ public class UserRegisterService {
     public void saveUser(User user) {
         userRepository.save(user);
     }
+    public boolean getUser(User user) {
+        return userRepository.findByEmail(user.getEmail()) == null;
+    }
 }

@@ -11,10 +11,6 @@ public class mainController {
     public String index(){
         return "HomePage";
     }
-    /*@GetMapping("/test")
-    public String first(){
-        return "HomePage";
-    }*/
     @GetMapping("/login")
     public String login(){
         return "LoginPage";
