@@ -52,7 +52,7 @@ public class RegisterController {
         user.setActive(1);
         user.setPassword(passwordEncoder().encode(user.getPassword()));
         userRegisterService.saveUser(user);
-        return "redirect:/MyWebsite/main";
+        return "redirect:/MyWebsite/login";
     }
 
 }

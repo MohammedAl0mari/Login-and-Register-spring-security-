@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -26,14 +27,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/MyWebsite/login").permitAll()
-                .antMatchers("/MyWebsite/main").authenticated()
+
+
+                .antMatchers("/MyWebsite/profile").authenticated()
+                .antMatchers("/MyWebsite/admin").hasRole("ADMIN")
+                .antMatchers("/MyWebsite/management").hasAnyRole("ADMIN","USER")
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/signIN")
                 .loginPage("/MyWebsite/login")
                 .usernameParameter("email")
-                .passwordParameter("password");
+                .passwordParameter("password")
+                .and()
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/MyWebsite/home")
+        ;
+
     }
     @Bean
     DaoAuthenticationProvider authenticationProvider(){
